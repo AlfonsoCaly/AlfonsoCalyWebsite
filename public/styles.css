@@ -1,0 +1,599 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    box-sizing: border-box;
+    font: 16px/1 ;
+    font-family: 'Oswald', monospace;
+    background-color: #000;
+    color: #fff;
+    border: 20px solid #111111;
+    position: relative;
+}
+
+#glslCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; 
+    pointer-events: none; 
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    max-width: 1420px; 
+    max-height: 800px; 
+    padding: 0px; 
+    box-sizing: border-box;
+    border: 0.4px solid #e3e3e3; 
+    box-sizing: border-box; 
+}
+
+.sidebar {
+    width: 25%;
+    background-color: #111;
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    font-family: 'Oswald', monospace;
+    margin-left: 15px;
+}
+
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); 
+    }
+}
+
+
+
+.sidebar .title,
+.sidebar .extratext,
+.sidebar .language,
+.sidebar .subtitle,
+.sidebar .menu {
+    animation: fadeInUp 1.5s ease-out; 
+    animation-fill-mode: both; 
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Mantiene el título y subtítulo alineados a la izquierda */
+    margin-bottom: auto; /* Empuja el menú hacia abajo */
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 200;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 5px;
+    position: relative; 
+    display: inline-block; 
+}
+
+.title::before,
+.title::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 3px solid whitesmoke;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease; 
+}
+
+.title::before {
+    top: -10px; 
+    left: -10px; 
+    border-top: 3px solid whitesmoke; 
+    border-left: 3px solid whitesmoke; 
+    border-bottom: none; 
+    border-right: none; 
+    transform: translate(-50%, -50%); 
+}
+
+.title::after {
+    bottom: -10px; 
+    right: -10px; 
+    border-bottom: 3px solid whitesmoke; 
+    border-right: 3px solid whitesmoke; 
+    border-top: none; 
+    border-left: none; 
+    transform: translate(50%, 50%);
+}
+
+.title:hover::before,
+.title:hover::after {
+    opacity: 1;
+    transform: translate(0, 0); 
+}
+
+.title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.title a:visited {
+    color: inherit; 
+}
+
+.title a:hover {
+    color: inherit; 
+}
+
+.title a:active {
+    color: inherit; 
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    font-weight: 150;
+    color: #bbb;
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.extratext {
+    font-size: 0.8rem;
+    font-weight: 150;
+    color: #bbb;
+    margin-bottom: 0px;
+    text-align: center;
+    margin-top: auto;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    font-weight: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    height: 100%; 
+    text-align: center; 
+}
+
+.menu li {
+    margin-bottom: 20px;
+}
+
+.menu li:hover a {
+    transform: scale(1.6); 
+    color: #fff; 
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.612);
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.menu a.active {
+    transform: scale(1.6); 
+    color: #fff; 
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.612); 
+}
+
+.menu a {
+    color: grey;
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: inline-block; 
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease; 
+}
+
+.svg-text {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.stroke-text {
+    font-family: 'Dancing Script', cursive; 
+    font-size: 120px;
+    fill: none;                         
+    stroke: rgb(174, 174, 174);                       
+    stroke-width: 2px;
+    stroke-dasharray: 1000;              
+    stroke-dashoffset: 1000;             
+    animation: drawText 12s ease-in-out infinite;  
+    animation-direction: alternate;      
+    animation-delay: 0.5s;                 
+}
+
+@keyframes drawText {
+    0% {
+        stroke-dashoffset: 1000;         
+    }
+    50% {
+        stroke-dashoffset: 0;             
+    }
+    65% {
+        stroke-dashoffset: 0;              
+    }
+    100% {
+        stroke-dashoffset: 1000;           
+    }
+}
+
+.additional-content {
+    padding-top: 50px;
+    font-family: 'Oswald', monospace;
+    margin: 40px;
+    display: flex;            
+    font-weight: 100;
+    text-align: center;
+     opacity: 0;               
+     transform: translateY(100%); 
+     animation: slideItUp 2s ease-out forwards; 
+     animation-delay: .5s;     
+ }
+ 
+ @keyframes slideItUp {
+     0% {
+         opacity: 0;
+         transform: translateY(100%);
+     }
+     100% {
+         opacity: 1;
+         transform: translateY(0); 
+     }
+ }
+
+.main-content {
+    position: absolute;
+    padding: 1px;
+    margin: 1px;
+    font-weight: 150;
+    width: calc(75% - 40px);   
+    font-family: 'Oswald', monospace;
+    left: 25%;               
+    height: calc(100vh - 40px); 
+    display: flex;
+    flex-direction: column;   
+    box-sizing: border-box; 
+    overflow: hidden;       
+}
+
+.titulo-container {
+    padding: 20px;
+    font-family: 'Oswald', monospace;
+    font-weight: 100;        
+    font-size: 48px;           
+    color: white;            
+    text-align: center;        
+    flex-shrink: 0;           
+        animation: fadeInUp 1.5s ease-out; 
+        animation-fill-mode: both;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+.titulo {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.extra-content {
+    flex-grow: 1;             
+    overflow-y: auto;         
+    padding: 40px;  
+    border-right: 0px;
+    margin-right: 0px;
+    padding-right: 14px;           
+    color: #eeeeee;             
+      opacity: 0;              
+      transform: translateY(100%);  
+      animation: slideItUp 2s ease-out forwards;  
+      animation-delay: .0s;  
+}
+
+.tarjeta {
+    width: 100%; 
+}
+
+.tarjeta,
+.tarjeta-grid {
+    position: relative; 
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    background-color: transparent;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.tarjeta::before,
+.tarjeta::after,
+.tarjeta-grid::before,
+.tarjeta-grid::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 3px solid whitesmoke;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.tarjeta::before,
+.tarjeta-grid::before {
+    top: -10px; 
+    left: -15px;
+    border-top: 3px solid whitesmoke;
+    border-left: 3px solid whitesmoke;
+    border-bottom: none;
+    border-right: none;
+    transform: translate(-50%, -50%);
+}
+
+.tarjeta::after,
+.tarjeta-grid::after {
+    bottom: -10px;
+    right: -15px;
+    border-bottom: 3px solid whitesmoke;
+    border-right: 3px solid whitesmoke;
+    border-top: none;
+    border-left: none;
+    transform: translate(50%, 50%); 
+}
+
+.tarjeta:hover::before,
+.tarjeta:hover::after,
+.tarjeta-grid:hover::before,
+.tarjeta-grid:hover::after {
+    opacity: 1;
+    transform: translate(0, 0); 
+}
+
+
+.tarjeta img {
+    width: 120px;                 
+    height: 120px;                 
+    border-radius: 50%;          
+    margin-right: 20px;           
+}
+
+.tarjeta-texto {
+    display: block;
+    flex-direction: column;   
+
+}
+
+.tarjeta-texto h4 {
+    font-size: 1.4rem;
+    font-weight: 120;
+    color: #fff;
+    margin: 0;                
+    padding-bottom: 5px;     
+}
+
+.tarjeta-texto span {
+    font-size: 1rem;
+    color: #fff;
+}
+
+.foto img {
+    width: 90px;                 
+    height: 90px;     
+    position: absolute;
+    right: 0; 
+    border-radius: 50%;          
+
+}
+
+.nueva-seccion {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px; 
+    margin-top: 40px;  
+}
+
+
+.tarjeta-grid img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;  
+    margin-right: 20px;
+}
+
+.tarjeta-grid .tarjeta-texto {
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjeta-grid h4 {
+    font-size: 1.2rem;
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+.tarjeta-grid span {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.botoncontactoindex {
+         opacity: 0;              
+         transform: translateY(100%);  
+         animation: slideItUp 3s ease-out forwards;  
+         animation-delay: .7s;       
+}
+
+.sidebar2 {
+    width: 25%;
+    background-color: #111;
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    font-family: 'Oswald', monospace;
+    margin-left: 15px;
+}
+
+.tarjeta img.imagen-cuadrada, 
+.tarjeta-grid img.imagen-cuadrada {
+    border-radius: 0 !important; 
+    width: 300px !important;
+    height: 200px !important;
+    margin-right: 20px !important;
+}
+
+.tarjeta-enlace {
+    text-decoration: none;
+    color: inherit; 
+    display: block; 
+}
+
+.texto-enlace {
+    color: inherit;
+    display: block; 
+}
+
+.menu-items {
+    margin-bottom: 12px;
+}
+
+/* Estilo para el contenedor de los idiomas */
+.language-switcher {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente las palabras Español e English */
+    margin-top: auto; /* Empuja hacia la parte inferior */
+    margin-bottom: 0px; /* Espacio para separarlas del nombre */
+    gap: 20px; /* Añade espacio entre las palabras */
+}
+
+/* Estilo para los enlaces de idiomas */
+.language {
+    color: grey;
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Efecto hover para agrandar e iluminar los enlaces de idiomas */
+.language:hover {
+    transform: scale(1.0); /* Aumenta el tamaño al hacer hover */
+    color: #fff;
+    text-shadow: 0px 0px 8px rgba(187, 255, 253, 0.612); /* Efecto de iluminación */
+}
+
+/* Mantener el estilo activo para el idioma seleccionado */
+.language.active {
+    transform: scale(1.0); /* Mantiene el tamaño aumentado */
+    color: #fff; /* Color blanco para dar el efecto de iluminación */
+    text-shadow: 0px 0px 8px rgba(187, 255, 253, 0.612); /* Efecto de brillo */
+}
+
+/* Para pantallas menores a 768px (tablets y móviles) */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Reduce el tamaño del texto en general */
+    }
+
+    h1 {
+        font-size: 22px; /* Reduce los títulos */
+    }
+
+    .subtitle {
+        font-size: 15px; /* Ajusta los subtítulos */
+    }
+
+    .menu a {
+        font-size: 14px;
+    }
+
+    .title {
+        font-size: 18px;
+    }
+
+    .extratext {
+        font-size: 7px;
+    }
+
+    img {
+        max-width: 33%; /* Reduce el tamaño de las imágenes */
+        max-height: 33%;
+    }
+
+    .btn {
+        font-size: 14px; /* Hace los botones más pequeños */
+        padding: 8px 12px; /* Reduce el tamaño del botón */
+    }
+}
+
+.tarjeta-enlace-galeria {
+    cursor: pointer;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* Oculta el carrusel al inicio */
+#galeriaCarrusel {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;  /* Usa opacidad en lugar de visibility */
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    max-height: 520px;
+    object-fit: contain !important; /* Usa contain para que la imagen se ajuste sin recortarse */
+    align-items: center;
+}
+
+/* Ajusta el tamaño del contenedor del carrusel */
+.carousel-container {
+    width: 100%;
+    max-width: 750px;
+    height: 520px; /* Fija la altura */
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible; /* Evita que la imagen sobresalga */
+}
+
+/* Asegura que las flechas sean fijas y no se muevan */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%; /* Ajusta el ancho para mejor visibilidad */
+    background: none; /* Elimina cualquier fondo extraño */
+}
+
+/* Ajusta la posición de las flechas más hacia los bordes */
+.carousel-control-prev {
+    left: -50px; /* Mueve la flecha izquierda más afuera */
+}
+
+.carousel-control-next {
+    right: -50px; /* Mueve la flecha derecha más afuera */
+}
+
+/* Asegura que el ícono de la flecha no se mueva */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 70px;
+    height: 70px;
+}
