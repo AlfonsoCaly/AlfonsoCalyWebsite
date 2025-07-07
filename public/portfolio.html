@@ -15,8 +15,12 @@
 </head>
 
 <body>
+    <!-- Mobile Menu Button (Hamburger) -->
+    <button id="sidebarToggle" class="sidebar-toggle d-block d-md-none" aria-label="Open menu">
+        <i class="fa fa-bars"></i>
+    </button>
     <div class="container">
-        <div class="sidebar2">
+        <div class="sidebar2" id="sidebar">
             <h1 class="title"><a href="indexenglish.html">Alfonso Cal y Mayor</a></h1>
             <p> </p>
             <p class="subtitle"><i class="fa-solid fa-scroll"></i></p>
@@ -33,95 +37,102 @@
                 <a href="#" class="language active">English</a>
             </div>
             <p class="extratext">alfonsocalymayor@gmail.com</p>
+            <!-- Close button for mobile -->
+            <button id="sidebarClose" class="sidebar-close d-block d-md-none" aria-label="Close menu">
+                <i class="fa fa-times"></i>
+            </button>
         </div>
         <div class="main-content">
             <div class="titulo-container">
                 <p>Portfolio</p>
             </div>
-
             <div class="extra-content">
-
                 <div class="container" style="border: 0px;">
                     <div class="d-flex justify-content-center align-items-start flex-wrap">
-                        <!-- Tarjeta -->
-                        <div id="toggleGaleria" class="tarjeta-enlace flex-grow-1">
-                            <div class="tarjeta">
-                                <img src="img/graficacover.png" alt="Imagen 1" class="img-fluid imagen-cuadrada">
-                                <div class="tarjeta-texto mt-3">
-                                    <h4>Database (Data cleansing) - Data Visualization</h4>
-                                    <span>Creation, cleaning, cleansing and/or scrubbing of databases to structure them into graphical representations using the best available tools.  
-                                        Trained at the British Columbia Institute of Technology.<br>
-                                    TABLEAU - MICROSOFT POWER BI - MySQL - SQL - Excel</span>
-                                    <div class="text-end mt-2">
-                                        <p>CLICK TO SEE EXAMPLES   <i class="fa-solid fa-circle-down fa-lg"></i> </p> 
+                        <!-- Card -->
+                        <div id="galeria-bloque">
+                            <div id="toggleGaleria" class="tarjeta-enlace flex-grow-1">
+                                <div class="tarjeta">
+                                    <img src="img/graficacover.png" alt="Image 1" class="img-fluid imagen-cuadrada">
+                                    <div class="tarjeta-texto mt-3">
+                                        <h4>Database (Data cleansing) - Data Visualization</h4>
+                                        <span>Creation, cleaning, cleansing and/or scrubbing of databases to structure them into graphical representations using the best available tools.  
+                                            Trained at the British Columbia Institute of Technology.<br>
+                                        TABLEAU - MICROSOFT POWER BI - MySQL - SQL - Excel</span>
+                                        <div class="text-end mt-2">
+                                            <p id="click-ejemplos">CLICK TO SEE EXAMPLES   <i class="fa-solid fa-circle-down fa-lg"></i> </p> 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                
-                        <!-- Carrusel -->
-                        <div id="galeriaCarrusel" class="ms-3 flex-grow-1">
-                            <div class="carousel-container">
-                                <div id="carouselGaleria" class="carousel slide" data-bs-ride="carousel">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <hr>
-                                            <img src="img/grafica7.png" alt="Ejemplo 1">
-                                            <hr>
-                                            <hr>
+                            <!-- Carousel -->
+                            <div id="galeriaCarrusel" class="ms-3 flex-grow-1">
+                                <div class="carousel-container">
+                                    <div id="carouselGaleria" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <hr>
+                                                <img src="img/grafica7.png" alt="Ejemplo 1">
+                                                <hr>
+                                                <hr>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <hr>
+                                                <img src="img/grafica2.png" alt="Ejemplo 2">
+                                                <hr>
+                                                <hr>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <hr>
+                                                <img src="img/grafica3.png" alt="Ejemplo 3">
+                                                <hr>
+                                                <hr>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <hr>
+                                                <img src="img/grafica4.png" alt="Ejemplo 3">
+                                                <hr>
+                                                <hr>
+                                            </div>
+                                            <!-- 
+                                            <div class="carousel-item">
+                                                <hr>
+                                                <img src="img/grafica6.png" alt="Cinepolis">
+                                                <hr>
+                                                <hr>
+                                            </div>
+                                             
+                                            <div class="carousel-item">
+                                                <hr>
+                                                <img src="img/grafica8.png" alt="MadridBarcelona">
+                                                <hr>
+                                                <hr>
+                                            </div>
+                                            -->
+                                            <div class="carousel-item">
+                                                <hr>
+                                                <img src="img/grafica1.png" alt="Ejemplo 3">
+                                                <hr>
+                                                <hr>
+                                            </div>
                                         </div>
-                                        <div class="carousel-item">
-                                            <hr>
-                                            <img src="img/grafica2.png" alt="Ejemplo 2">
-                                            <hr>
-                                            <hr>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <hr>
-                                            <img src="img/grafica3.png" alt="Ejemplo 3">
-                                            <hr>
-                                            <hr>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <hr>
-                                            <img src="img/grafica4.png" alt="Ejemplo 3">
-                                            <hr>
-                                            <hr>
-                                        </div>
-                                        <!-- 
-                                        <div class="carousel-item">
-                                            <hr>
-                                            <img src="img/grafica6.png" alt="Cinepolis">
-                                            <hr>
-                                            <hr>
-                                        </div>
-                                         
-                                        <div class="carousel-item">
-                                            <hr>
-                                            <img src="img/grafica8.png" alt="MadridBarcelona">
-                                            <hr>
-                                            <hr>
-                                        </div>
-                                        -->
-                                        <div class="carousel-item">
-                                            <hr>
-                                            <img src="img/grafica1.png" alt="Ejemplo 3">
-                                            <hr>
-                                            <hr>
-                                        </div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselGaleria" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselGaleria" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        </button>
                                     </div>
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselGaleria" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselGaleria" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Mobile-only line breaks for spacing -->
+                <div class="br-movil">
+                    <br><br><br><br><br>
+                </div>
                 <a href="https://fabkaryview.onrender.com" class="tarjeta-enlace" target="_blank">
                     <div class="tarjeta">
                         <img src="favkary.png" alt="Image 1" class="imagen-cuadrada">
@@ -218,7 +229,6 @@
             </div>
             
     <canvas id="glslCanvas"></canvas>
-
     <script src="glslBackground.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -229,7 +239,7 @@
                 if (galeriaCarrusel.style.maxHeight === "0px" || galeriaCarrusel.style.maxHeight === "") {
                     galeriaCarrusel.style.display = "block"; 
                     setTimeout(() => {
-                        galeriaCarrusel.style.maxHeight = "500px"; 
+                        galeriaCarrusel.style.maxHeight = "520px"; 
                         galeriaCarrusel.style.opacity = "1"; 
                     }, 10);
                 } else {
@@ -238,6 +248,35 @@
                     setTimeout(() => {
                         galeriaCarrusel.style.display = "none"; 
                     }, 500);
+                }
+            });
+            // Initially hidden
+            galeriaCarrusel.style.maxHeight = "0px";
+            galeriaCarrusel.style.opacity = "0";
+            galeriaCarrusel.style.display = "none";
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebarClose = document.getElementById('sidebarClose');
+            // Open sidebar
+            sidebarToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                sidebar.classList.add('sidebar-open');
+            });
+            // Close sidebar
+            sidebarClose.addEventListener('click', function(e) {
+                e.stopPropagation();
+                sidebar.classList.remove('sidebar-open');
+            });
+            // Optional: Close sidebar when clicking outside (mobile only)
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth < 768 && sidebar.classList.contains('sidebar-open')) {
+                    if (!sidebar.contains(event.target) && event.target !== sidebarToggle) {
+                        sidebar.classList.remove('sidebar-open');
+                    }
                 }
             });
         });

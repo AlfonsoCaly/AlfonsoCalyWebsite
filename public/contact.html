@@ -15,7 +15,15 @@
 
 <body>
     <div class="container">
-        <div class="sidebar2">
+        <!-- Mobile Menu Button (Hamburger) -->
+        <button id="sidebarToggle" class="sidebar-toggle d-block d-md-none" aria-label="Open menu">
+            <i class="fa fa-bars"></i>
+        </button>
+        <div class="sidebar2" id="sidebar">
+            <!-- Close button for mobile -->
+            <button id="sidebarClose" class="sidebar-close d-block d-md-none" aria-label="Close menu">
+                <i class="fa fa-times"></i>
+            </button>
             <h1 class="title"><a href="indexenglish.html">Alfonso Cal y Mayor</a></h1>
             <p> </p>
             <p class="subtitle"><i class="fa-solid fa-scroll"></i></p>
@@ -87,5 +95,30 @@
     <canvas id="glslCanvas"></canvas>
 
     <script src="glslBackground.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebarClose = document.getElementById('sidebarClose');
+        // Open sidebar
+        sidebarToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            sidebar.classList.add('sidebar-open');
+        });
+        // Close sidebar
+        sidebarClose.addEventListener('click', function(e) {
+            e.stopPropagation();
+            sidebar.classList.remove('sidebar-open');
+        });
+        // Optional: Close sidebar when clicking outside (mobile only)
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth < 768 && sidebar.classList.contains('sidebar-open')) {
+                if (!sidebar.contains(event.target) && event.target !== sidebarToggle) {
+                    sidebar.classList.remove('sidebar-open');
+                }
+            }
+        });
+    });
+</script>
 </body>
 </html>
